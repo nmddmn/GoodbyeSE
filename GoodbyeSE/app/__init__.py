@@ -3,6 +3,8 @@ import logging
 from flask import Flask
 from flask_appbuilder import AppBuilder, SQLA
 
+from app.views.custom_index import CustomIndexView
+
 """
  Logging configuration
 """
@@ -13,7 +15,7 @@ logging.getLogger().setLevel(logging.DEBUG)
 app = Flask(__name__)
 app.config.from_object("config")
 db = SQLA(app)
-appbuilder = AppBuilder(app, db.session)
+appbuilder = AppBuilder(app, db.session, indexview = CustomIndexView)
 
 
 """
@@ -29,4 +31,12 @@ def set_sqlite_pragma(dbapi_connection, connection_record):
     cursor.close()
 """
 
-from . import views
+from app.views import *
+from app.views.employee.profile import *
+from app.views.employer.profile import *
+
+appbuilder.add_view(EmployeeProfileView, "Profile", category='Employee')
+appbuilder.add_separator("Employee")
+appbuilder.add_view(EmployerProfileView, "Profile", category='Employer')
+
+db.create_all()
