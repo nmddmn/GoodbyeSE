@@ -1,12 +1,18 @@
 from flask import render_template
 from flask_appbuilder.models.sqla.interface import SQLAInterface
 from flask_appbuilder import ModelView, ModelRestApi, BaseView, AppBuilder, expose, has_access
+from app.models.NhanVien import NhanVienModel
+from flask_appbuilder.models.sqla.filters import FilterEqualFunction
+from .utils import *
 
-class EmployeeView(BaseView):
-        
-    route_base = "/employee"
+class NhanVienView(ModelView):
+    datamodel = SQLAInterface(NhanVienModel)
     
-    default_view = "test"
+    route_base = "/nhan_vien"
+    
+    # default_view = "test"
+    
+    base_filters = [['NhanVien.MANHANVIEN', FilterEqualFunction, lambda: None if is_admin() else get_user_id()]]
     
     @expose('/test')
     @has_access
