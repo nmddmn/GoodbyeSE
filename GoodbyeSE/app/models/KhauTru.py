@@ -9,4 +9,4 @@ class KhauTruModel(Model):
     SOTIEN = Column(INT, nullable=False)
 
     def __repr__(self):
-        return self.name
+        return self.TENKHAUTRU

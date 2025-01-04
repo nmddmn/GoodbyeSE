@@ -7,9 +7,10 @@ from .utils import *
 
 class KhauTruView(ModelView):
     datamodel = SQLAInterface(KhauTruModel)
+    list_columns = ["MAKHAUTRU", "TENKHAUTRU", "SOTIEN"]
+    
+    list_title = "Khấu Trừ"
     
     route_base = "/khau_tru"
     
     # default_view = "test"
-    
-    base_filters = [['NhanVien.MANHANVIEN', FilterEqualFunction, lambda: None if is_admin() else get_user_id()]]

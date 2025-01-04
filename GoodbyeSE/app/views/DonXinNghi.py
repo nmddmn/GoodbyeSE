@@ -7,9 +7,21 @@ from .utils import *
 
 class DonXinNghiView(ModelView):
     datamodel = SQLAInterface(DonXinNghiModel)
+    list_columns = ['MADONXINNGHI', 'LYDO', 'TRANGTHAI', 'THOIGIANGUI', 'MALAMVIEC', 'MANHANVIEN']
+    # edit_columns = ['LYDO', 'THOIGIANGUI', 'MALAMVIEC', 'MANHANVIEN']
+    # add_columns = ['LYDO', 'THOIGIANGUI', 'MALAMVIEC', 'MANHANVIEN']
+    
+    list_title = "Đơn Xin Nghỉ"
     
     route_base = "/don_xin_nghi"
+        
+    base_filters = [['NhanVien.TAIKHOAN', FilterEqualFunction, lambda: get_user_id()]]
+
+
+class QuanLyDonXinNghiView(ModelView):
+    datamodel = SQLAInterface(DonXinNghiModel)
+    list_columns = ['MADONXINNGHI', 'LYDO', 'TRANGTHAI', 'THOIGIANGUI', 'MALAMVIEC']
     
-    # default_view = "test"
+    list_title = "Quản Lý Đơn Xin Nghỉ"
     
-    base_filters = [['NhanVien.MANHANVIEN', FilterEqualFunction, lambda: None if is_admin() else get_user_id()]]
+    route_base = "/quan_ly_don_xin_nghi"

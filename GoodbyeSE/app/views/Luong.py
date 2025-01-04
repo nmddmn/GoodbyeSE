@@ -7,9 +7,11 @@ from .utils import *
 
 class LuongView(ModelView):
     datamodel = SQLAInterface(LuongModel)
+    list_columns = ['MALOAILUONG', 'TENLOAILUONG', 'VITRI', 'HESOLUONG', 'LUONGCOBAN']
+    
+    list_title = "Lương"
     
     route_base = "/luong"
     
     # default_view = "test"
     
-    base_filters = [['NhanVien.MANHANVIEN', FilterEqualFunction, lambda: None if is_admin() else get_user_id()]]

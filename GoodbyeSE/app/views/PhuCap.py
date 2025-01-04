@@ -7,9 +7,8 @@ from .utils import *
 
 class PhuCapView(ModelView):
     datamodel = SQLAInterface(PhuCapModel)
+    list_columns = ["MAPHUCAP", "TENPHUCAP", "SOTIEN"]
+    
+    list_title = "Phụ Cấp"
     
     route_base = "/phu_cap"
-    
-    # default_view = "test"
-    
-    base_filters = [['NhanVien.MANHANVIEN', FilterEqualFunction, lambda: None if is_admin() else get_user_id()]]

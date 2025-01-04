@@ -1,5 +1,5 @@
 from flask_appbuilder import Model
-from sqlalchemy import Column, INT, DATETIME
+from sqlalchemy import Column, INT, DATE
 from sqlalchemy.orm import relationship
 
 class LichLamModel(Model):
@@ -8,8 +8,7 @@ class LichLamModel(Model):
     NAM = Column(INT, nullable=False)
     TUAN = Column(INT, nullable=False)
     THU = Column(INT, nullable=False)
-    THOIGIAN = Column(DATETIME, nullable=False)
-
+    THOIGIAN = Column(DATE, nullable=False)
 
     def __repr__(self):
-        return self.name
+        return str(self.MALICHLAM)
