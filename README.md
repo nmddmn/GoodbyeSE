@@ -1,6 +1,6 @@
 # GoodbyeSE
 
-GoodbyeSE project for Introduction to Software Engineering course
+GoodbyeSE project for Software Design and Construction course
 
 ## Installation
 
